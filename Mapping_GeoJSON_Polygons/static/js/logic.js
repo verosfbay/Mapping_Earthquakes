@@ -38,7 +38,9 @@ let torontoHoods = "https://raw.githubusercontent.com/verosfbay/Mapping_Earthqua
 let myStyle = {
   color: "#0000ff",
   weight: 1,
-  fillColor: "FFFF00"
+  fillColor: "#ffff00",
+  opacity: 1,
+  fillOpacity: 0.2
 }
 
 // Grabbing our GeoJSON data.
