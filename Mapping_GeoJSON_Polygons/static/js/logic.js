@@ -18,14 +18,14 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 // Create a base layer that holds both maps.
 let baseMaps = {
   "streets": streets,
-  "Satellite Streets": satelliteStreets
+  "dark": satelliteStreets
 };
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [satelliteStreets]
+  layers: [streets]
 })
 
 // Pass our map layers into our layers control and add the layers control to the map
@@ -36,16 +36,26 @@ let torontoHoods = "https://raw.githubusercontent.com/verosfbay/Mapping_Earthqua
 
 // Create a style for the lines.
 let myStyle = {
-  color: "#ffffa1",
-  weight: 2
+  color: "#0000ff",
+  weight: 1,
+  fillColor: "FFFF00"
 }
 
 // Grabbing our GeoJSON data.
 d3.json(torontoHoods).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJSON(data).addTo(map);
+L.geoJSON(data, {
+  style:myStyle,
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup("<h3> Airline:" + feature.properties.airling + "</h3> <hr><h3> Destination: " + feature.properties.dst + "</h3>");
+  }
+})
+.addTo(map);
 });
 
+// this.polygonDrawer = new L.Draw.Polygon(this.map, {shapeOptions: {color: '#f00'}});
+
+
 // Get data from cities.js
-let cityData = cities;
+// let cityData = cities;
