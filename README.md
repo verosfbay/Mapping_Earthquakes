@@ -10,6 +10,6 @@ Deliverable 3: Add an Additional Map
 * HTML
 * Javascript 
 * CSS
-* Leaflet
-* d3
+* Leaflet.js
+* GeoJSON
 
